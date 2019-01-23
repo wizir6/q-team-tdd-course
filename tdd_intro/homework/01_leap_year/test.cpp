@@ -16,6 +16,11 @@ If your language provides a method in the standard library that does this look-u
 
 bool check_leap_year(unsigned int year)
 {
+    if ((year % 100) == 0 && (year % 400) != 0)
+    {
+        return false;
+    }
+
     return (year % 4) == 0;
 }
 
