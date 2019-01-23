@@ -23,3 +23,8 @@ TEST(LeapYearCheck, check_division_by_four)
 {
     EXPECT_TRUE(check_leap_year(4));
 }
+
+TEST(LeapYearCheck, check_not_leap_year)
+{
+    EXPECT_FALSE(check_leap_year(3));
+}
