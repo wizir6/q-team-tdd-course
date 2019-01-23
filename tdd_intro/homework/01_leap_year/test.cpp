@@ -21,10 +21,15 @@ bool check_leap_year(unsigned int year)
 
 TEST(LeapYearCheck, check_division_by_four)
 {
-    EXPECT_TRUE(check_leap_year(4));
+    EXPECT_TRUE(check_leap_year(2000));
 }
 
 TEST(LeapYearCheck, check_not_leap_year)
 {
-    EXPECT_FALSE(check_leap_year(3));
+    EXPECT_FALSE(check_leap_year(1997));
+}
+
+TEST(LeapYearCheck, check_leap_year_division_100)
+{
+    EXPECT_FALSE(check_leap_year(1900));
 }
