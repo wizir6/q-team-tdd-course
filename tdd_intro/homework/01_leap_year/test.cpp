@@ -13,3 +13,9 @@ If your language provides a method in the standard library that does this look-u
 */
 
 #include <gtest/gtest.h>
+
+
+TEST(LeapYearCheck, check_division_by_four)
+{
+    EXPECT_TRUE(check_leap_year(4));
+}
