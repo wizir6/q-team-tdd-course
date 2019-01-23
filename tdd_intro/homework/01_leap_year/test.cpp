@@ -14,6 +14,10 @@ If your language provides a method in the standard library that does this look-u
 
 #include <gtest/gtest.h>
 
+bool check_leap_year(unsigned int year)
+{
+    return (year % 4) == 0;
+}
 
 TEST(LeapYearCheck, check_division_by_four)
 {
