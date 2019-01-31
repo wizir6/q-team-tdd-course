@@ -32,7 +32,8 @@ TEST(TernaryConvertor, check_the_positive_case)
     EXPECT_EQ(convertor("102012"), 302);
 }
 
-TEST(NonTernaryConvertor, check_non_ternary_predicate)
+TEST(NonTernaryConvertor, check_non_ternary_wrong_num)
 {
     EXPECT_FALSE(non_ternary_predicate('7'));
 }
+
