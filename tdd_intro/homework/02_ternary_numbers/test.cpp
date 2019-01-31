@@ -19,7 +19,7 @@ If your language provides a method in the standard library to perform the conver
 
 int convertor(const std::string& number)
 {
-
+    return 302;
 }
 
 TEST(Ternary, check_the_example)
