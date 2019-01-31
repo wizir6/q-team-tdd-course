@@ -17,6 +17,11 @@ The last place in a ternary number is the 1's place. The second to last is the 3
 If your language provides a method in the standard library to perform the conversion, pretend it doesn't exist and implement it yourself.
 */
 
+std::string remove_non_ternary(const std::string& ternary_num)
+{
+    return "";
+}
+
 int convertor(const std::string& number)
 {
     return 302;
@@ -25,4 +30,10 @@ int convertor(const std::string& number)
 TEST(TernaryConvertor, check_the_positive_case)
 {
     EXPECT_EQ(convertor("102012"), 302);
+}
+
+TEST(NonTernaryConvertor, check_non_ternary_convertor)
+{
+
+    EXPECT_EQ(remove_non_ternary("105017"), "100010");
 }
