@@ -19,7 +19,12 @@ If your language provides a method in the standard library to perform the conver
 
 bool non_ternary_predicate(const char c)
 {
-    return false;
+    if(c >= '0' && c <= '2')
+    {
+        return false;
+    }
+
+    return true;
 }
 
 int convertor(const std::string& number)
@@ -34,6 +39,11 @@ TEST(TernaryConvertor, check_the_positive_case)
 
 TEST(NonTernaryConvertor, check_non_ternary_wrong_num)
 {
-    EXPECT_FALSE(non_ternary_predicate('7'));
+    EXPECT_TRUE(non_ternary_predicate('7'));
+}
+
+TEST(NonTernaryConvertor, check_non_ternary_correct_num)
+{
+    EXPECT_FALSE(non_ternary_predicate('0'));
 }
 
