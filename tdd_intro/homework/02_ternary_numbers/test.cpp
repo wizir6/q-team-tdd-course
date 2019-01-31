@@ -33,12 +33,13 @@ bool non_ternary_predicate(const char c)
 int convertor(std::string number)
 {
     std::replace_if(number.begin(), number.end(), non_ternary_predicate, '0');
-    int decimal_value = 0;
-    for (int i = 0; i < number.length(); i++)
+    auto decimal_value = 0;
+    for (size_t i = 0; i < number.length(); i++)
     {
         auto value = (number[i] - '0') * pow(3, number.length() - i - 1);
         decimal_value += value;
     }
+
     return decimal_value;
 }
 
