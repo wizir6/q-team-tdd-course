@@ -22,7 +22,7 @@ int convertor(const std::string& number)
     return 302;
 }
 
-TEST(Ternary, check_the_example)
+TEST(TernaryConvertor, check_the_positive_case)
 {
     EXPECT_EQ(convertor("102012"), 302);
 }
