@@ -30,8 +30,9 @@ bool non_ternary_predicate(const char c)
     return true;
 }
 
-int convertor(const std::string& number)
+int convertor(std::string number)
 {
+    std::replace_if(number.begin(), number.end(), non_ternary_predicate, '0');
     int decimal_value = 0;
     for (int i = 0; i < number.length(); i++)
     {
