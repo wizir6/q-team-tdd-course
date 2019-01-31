@@ -47,3 +47,9 @@ TEST(NonTernaryConvertor, check_non_ternary_correct_num)
     EXPECT_FALSE(non_ternary_predicate('0'));
 }
 
+TEST(NonTernaryConvertor, check_non_ternary_incorrect_num)
+{
+    EXPECT_TRUE(non_ternary_predicate('!'));
+}
+
+
