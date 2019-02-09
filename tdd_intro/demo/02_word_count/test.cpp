@@ -36,3 +36,10 @@ TEST(word_count, get_words_test)
 
     EXPECT_EQ(words, get_words("olly olly in come free please please let it be in such manner olly"));
 }
+
+TEST(word_count, get_words_check_empty_strig)
+{
+    std::vector<std::string> words = {};
+
+    EXPECT_EQ(words, get_words(""));
+}
