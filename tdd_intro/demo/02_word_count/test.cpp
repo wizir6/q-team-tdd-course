@@ -83,3 +83,11 @@ TEST(word_count, check_calc_duplicates)
     EXPECT_EQ(result, calc_duplicates("olly olly in come free please please let it be in such manner olly"));
 }
 
+TEST(word_count, check_calc_duplicates_with_empty_string)
+{
+    std::map<const std::string, int> result;
+
+    EXPECT_EQ(result, calc_duplicates(""));
+}
+
+
