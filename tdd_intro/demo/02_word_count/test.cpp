@@ -14,19 +14,26 @@ such: 1
 */
 
 #include <gtest/gtest.h>
+#include <iostream>
 #include <string>
 #include <map>
 
 std::vector<std::string> get_words(const std::string& phrase)
 {
-    std::vector<std::string> words = {};
+    std::vector<std::string> words;
+    std::stringstream stream(phrase);
+    std::string word;
+    while (std::getline(stream, word, ' '))
+    {
+        words.push_back(word);
+    }
 
     return words;
 }
 
 TEST(word_count, get_words_test)
 {
-    std::vector<std::string> words = {"olly", "olly", "in", "come", "free", "please", "please", "let", "it", "be", "in" "such", "manner", "olly"};
+    std::vector<std::string> words = {"olly", "olly", "in", "come", "free", "please", "please", "let", "it", "be", "in", "such", "manner", "olly"};
 
     EXPECT_EQ(words, get_words("olly olly in come free please please let it be in such manner olly"));
 }
