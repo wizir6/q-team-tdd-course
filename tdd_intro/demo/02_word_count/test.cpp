@@ -30,6 +30,14 @@ std::vector<std::string> get_words(const std::string& phrase)
     return words;
 }
 
+std::map<const std::string, int> calc_duplicates(const std::string& phrase)
+{
+    std::map<const std::string, int> result;
+
+    return result;
+}
+
+
 TEST(word_count, get_words_test)
 {
     std::vector<std::string> words = {"olly", "olly", "in", "come", "free", "please", "please", "let", "it", "be", "in", "such", "manner", "olly"};
@@ -43,3 +51,12 @@ TEST(word_count, get_words_check_empty_strig)
 
     EXPECT_EQ(words, get_words(""));
 }
+
+TEST(word_count, check_calc_duplicates)
+{
+    std::map<const std::string, int> result;
+    result.insert(std::make_pair("olly", 2));
+
+    EXPECT_EQ(result, calc_duplicates("olly olly"));
+}
+
