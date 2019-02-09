@@ -16,7 +16,6 @@ such: 1
 #include <gtest/gtest.h>
 #include <iostream>
 #include <string>
-#include <map>
 
 std::vector<std::string> get_words(const std::string& phrase)
 {
