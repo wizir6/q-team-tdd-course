@@ -17,3 +17,16 @@ such: 1
 #include <string>
 #include <map>
 
+std::vector<std::string> get_words(const std::string& phrase)
+{
+    std::vector<std::string> words = {};
+
+    return words;
+}
+
+TEST(word_count, get_words_test)
+{
+    std::vector<std::string> words = {"olly", "olly", "in", "come", "free", "please", "please", "let", "it", "be", "in" "such", "manner", "olly"};
+
+    EXPECT_EQ(words, get_words("olly olly in come free please please let it be in such manner olly"));
+}
