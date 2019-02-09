@@ -34,6 +34,20 @@ std::map<const std::string, int> calc_duplicates(const std::string& phrase)
 {
     std::map<const std::string, int> result;
 
+    std::vector<std::string> words = get_words(phrase);
+    for (auto current_word : words)
+    {
+        int occurances = 0;
+        for (auto word : words)
+        {
+            if (current_word == word)
+            {
+                occurances++;
+            }
+        }
+        result.insert(std::make_pair(current_word, occurances));
+    }
+
     return result;
 }
 
