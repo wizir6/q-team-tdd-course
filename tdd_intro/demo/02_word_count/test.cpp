@@ -69,8 +69,17 @@ TEST(word_count, get_words_check_empty_strig)
 TEST(word_count, check_calc_duplicates)
 {
     std::map<const std::string, int> result;
-    result.insert(std::make_pair("olly", 2));
+    result.insert(std::make_pair("olly", 3));
+    result.insert(std::make_pair("in", 2));
+    result.insert(std::make_pair("come", 1));
+    result.insert(std::make_pair("free", 1));
+    result.insert(std::make_pair("please", 2));
+    result.insert(std::make_pair("let", 1));
+    result.insert(std::make_pair("it", 1));
+    result.insert(std::make_pair("be", 1));
+    result.insert(std::make_pair("such", 1));
+    result.insert(std::make_pair("manner", 1));
 
-    EXPECT_EQ(result, calc_duplicates("olly olly"));
+    EXPECT_EQ(result, calc_duplicates("olly olly in come free please please let it be in such manner olly"));
 }
 
