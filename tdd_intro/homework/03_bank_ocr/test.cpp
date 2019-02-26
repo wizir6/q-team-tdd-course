@@ -335,3 +335,8 @@ TEST(test_get_digit_from_struct, digit_two)
 {
     EXPECT_EQ(2, get_digit_from_struct(s_digit2));
 }
+
+TEST(test_get_digit_from_struct, digit_three)
+{
+    EXPECT_EQ(3, get_digit_from_struct(s_digit3));
+}
