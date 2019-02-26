@@ -202,7 +202,10 @@ short calc_specific_symbol(const std::string& line, char symbol)
 
     for (size_t i = 0; i < line.size(); ++i)
     {
-        if (line[i] == symbol) ++number_of_symbols;
+        if (line[i] == symbol)
+        {
+            ++number_of_symbols;
+        }
     }
 
     return number_of_symbols;
