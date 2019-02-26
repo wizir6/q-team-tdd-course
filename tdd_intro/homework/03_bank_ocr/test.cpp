@@ -293,8 +293,12 @@ Digit get_digit_from_display(Display display, int num)
 
 int get_sequence_from_display(Display display)
 {
-
     return 111111111;
+}
+
+TEST(test_get_sequence_from_display, two_sequence)
+{
+    EXPECT_EQ(get_sequence_from_display(s_displayAll2), 222222222);
 }
 
 TEST(test_get_sequence_from_display, one_sequence)
