@@ -291,6 +291,16 @@ Digit get_digit_from_display(Display display, int num)
     return result;
 }
 
+int get_sequence_from_display(Display display)
+{
+    return 0;
+}
+
+TEST(test_get_sequence_from_display, one_sequence)
+{
+    EXPECT_EQ(get_sequence_from_display(s_displayAll1), 111111111);
+}
+
 TEST(test_get_digit_from_display, first_digit)
 {
     EXPECT_EQ(get_digit_from_display(s_displayAll1, 0), s_digit1);
