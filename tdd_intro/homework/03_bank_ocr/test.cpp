@@ -213,7 +213,8 @@ short calc_specific_symbol(const std::string& line, char symbol)
 
 short get_digit_from_struct(Digit digit)
 {
-    return 0;
+
+    return 1;
 }
 
 
