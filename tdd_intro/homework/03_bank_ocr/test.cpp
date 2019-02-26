@@ -219,7 +219,7 @@ short get_digit_from_struct(Digit digit)
         spaces += calc_specific_symbol(line, ' ');
     }
 
-    short result = 0;
+    short result = 10;
     switch(spaces)
     {
         case 7:
@@ -281,4 +281,9 @@ TEST(test_get_digit_from_struct, digit_four)
 TEST(test_get_digit_from_struct, digit_eight)
 {
     EXPECT_EQ(8, get_digit_from_struct(s_digit8));
+}
+
+TEST(test_get_digit_from_struct, digit_zero)
+{
+    EXPECT_EQ(0, get_digit_from_struct(s_digit0));
 }
