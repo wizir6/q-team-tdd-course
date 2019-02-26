@@ -304,9 +304,15 @@ int get_sequence_from_display(const Display& display)
 
     return result;
 }
+
 TEST(test_get_sequence_from_display, all_digits_sequence)
 {
     EXPECT_EQ(get_sequence_from_display(s_display123456789), 123456789);
+}
+
+TEST(test_get_sequence_from_display, nine_sequence)
+{
+    EXPECT_EQ(get_sequence_from_display(s_displayAll9), 999999999);
 }
 
 TEST(test_get_sequence_from_display, two_sequence)
