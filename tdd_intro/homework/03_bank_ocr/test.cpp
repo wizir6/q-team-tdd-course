@@ -103,7 +103,7 @@ struct Display
 const Digit s_digit0 = { " _ ",
                          "| |",
                          "|_|"
-                       };//4 4 2
+                       };//3 4 2
 const Digit s_digit1 = { "   ",
                          "  |",
                          "  |"
@@ -214,9 +214,11 @@ short calc_specific_symbol(const std::string& line, char symbol)
 short get_digit_from_struct(Digit digit)
 {
     short spaces = 0;
+    short pipes = 0;
     for(auto &line : digit.lines)
     {
         spaces += calc_specific_symbol(line, ' ');
+        pipes += calc_specific_symbol(line, '|');
     }
 
     short result = 10;
@@ -236,6 +238,13 @@ short get_digit_from_struct(Digit digit)
 
         case 2:
             result = 8;
+            break;
+
+        case 3:
+            if (4 == pipes)
+            {
+                result = 0;
+            }
             break;
     }
 
