@@ -224,6 +224,10 @@ short get_digit_from_struct(Digit digit)
     {
         result = 1;
     }
+    if(6 == spaces)
+    {
+        result = 7;
+    }
 
     return result;
 }
