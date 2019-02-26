@@ -196,17 +196,12 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
                                      "  ||_  _|  | _||_|  ||_| _|"
 };
 
-int calc_non_spaces(Digit digit)
+int calc_specific_symbol(const std::string& line, char symbol)
 {
     return 2;
 }
 
-TEST(calc_non_spaces, two_non_spaces)
+TEST(test_calc_specific_symbol, two_non_spaces)
 {
-    EXPECT_EQ(2, calc_non_spaces(s_digit1));
-}
-
-TEST(calc_non_spaces, six_non_spaces)
-{
-    EXPECT_EQ(6, calc_non_spaces(s_digit0));
+    EXPECT_EQ(2, calc_specific_symbol(" _ ", ' '));
 }
