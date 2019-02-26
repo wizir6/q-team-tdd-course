@@ -280,13 +280,12 @@ short get_digit_from_struct(Digit digit)
 
 Digit get_digit_from_display(Display display)
 {
-    return s_digit0;
+    return s_digit1;
 }
 
 TEST(test_get_digit_from_display, first_digit)
 {
-    Digit one = get_digit_from_display(s_displayAll1);
-    EXPECT_EQ(one, s_digit1);
+    EXPECT_EQ(get_digit_from_display(s_displayAll1), s_digit1);
 }
 
 TEST(test_calc_specific_symbol, two_non_spaces)
