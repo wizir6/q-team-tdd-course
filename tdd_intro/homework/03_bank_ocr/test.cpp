@@ -202,7 +202,7 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
 
 short calc_specific_symbol(const std::string& line, char symbol)
 {
-    short number_of_symbols = 0;
+    auto number_of_symbols = 0;
 
     for (size_t i = 0; i < line.size(); ++i)
     {
@@ -215,17 +215,17 @@ short calc_specific_symbol(const std::string& line, char symbol)
     return number_of_symbols;
 }
 
-short get_digit_from_struct(Digit digit)
+short get_digit_from_struct(const Digit& digit)
 {
-    short spaces = 0;
-    short pipes = 0;
+    auto spaces = 0;
+    auto pipes = 0;
     for(auto &line : digit.lines)
     {
         spaces += calc_specific_symbol(line, ' ');
         pipes += calc_specific_symbol(line, '|');
     }
 
-    short result = 10; // some incorrect number to detect failure
+    auto result = 10; // some incorrect number to detect failure
     switch(spaces)
     {
         case 7:
@@ -278,7 +278,7 @@ short get_digit_from_struct(Digit digit)
     return result;
 }
 
-Digit get_digit_from_display(Display display, int num)
+Digit get_digit_from_display(const Display& display, int num)
 {
     Digit result;
     auto i = 0;
@@ -291,7 +291,7 @@ Digit get_digit_from_display(Display display, int num)
     return result;
 }
 
-int get_sequence_from_display(Display display)
+int get_sequence_from_display(const Display& display)
 {
     auto result = 0;
     for (auto i = 0; i < 9; i++)
