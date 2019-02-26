@@ -245,6 +245,10 @@ short get_digit_from_struct(Digit digit)
             {
                 result = 0;
             }
+            else if (2 == calc_specific_symbol(digit.lines[1], '|'))
+            {
+                result = 9;
+            }
             break;
     }
 
