@@ -293,7 +293,16 @@ Digit get_digit_from_display(Display display, int num)
 
 int get_sequence_from_display(Display display)
 {
-    return 111111111;
+    auto result = 0;
+    for (auto i = 0; i < 9; i++)
+    {
+        Digit digit = get_digit_from_display(display, i);
+        auto value = get_digit_from_struct(digit);
+        result *= 10;
+        result += value;
+    }
+
+    return result;
 }
 
 TEST(test_get_sequence_from_display, two_sequence)
