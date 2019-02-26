@@ -293,7 +293,8 @@ Digit get_digit_from_display(Display display, int num)
 
 int get_sequence_from_display(Display display)
 {
-    return 0;
+
+    return 111111111;
 }
 
 TEST(test_get_sequence_from_display, one_sequence)
