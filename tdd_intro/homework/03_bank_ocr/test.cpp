@@ -296,3 +296,8 @@ TEST(test_get_digit_from_struct, digit_zero)
 {
     EXPECT_EQ(0, get_digit_from_struct(s_digit0));
 }
+
+TEST(test_get_digit_from_struct, digit_nine)
+{
+    EXPECT_EQ(9, get_digit_from_struct(s_digit9));
+}
