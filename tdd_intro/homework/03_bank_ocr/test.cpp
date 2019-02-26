@@ -103,43 +103,43 @@ struct Display
 const Digit s_digit0 = { " _ ",
                          "| |",
                          "|_|"
-                       };
+                       };//6
 const Digit s_digit1 = { "   ",
                          "  |",
                          "  |"
-                       };
+                       };//2
 const Digit s_digit2 = { " _ ",
                          " _|",
                          "|_ "
-                       };
+                       };//5
 const Digit s_digit3 = { " _ ",
                          " _|",
                          " _|"
-                       };
+                       };//5
 const Digit s_digit4 = { "   ",
                          "|_|",
                          "  |"
-                       };
+                       };//4
 const Digit s_digit5 = { " _ ",
                          "|_ ",
                          " _|"
-                       };
+                       };//5
 const Digit s_digit6 = { " _ ",
                          "|_ ",
                          "|_|"
-                       };
+                       };//6
 const Digit s_digit7 = { " _ ",
                          "  |",
                          "  |"
-                       };
+                       };//3
 const Digit s_digit8 = { " _ ",
                          "|_|",
                          "|_|"
-                       };
+                       };//7
 const Digit s_digit9 = { " _ ",
                          "|_|",
                          " _|"
-                       };
+                       };//6
 
 const Display s_displayAll0 = { " _  _  _  _  _  _  _  _  _ ",
                                 "| || || || || || || || || |",
@@ -195,3 +195,13 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
                                      "  | _| _||_||_ |_   ||_||_|",
                                      "  ||_  _|  | _||_|  ||_| _|"
 };
+
+int calc_non_spaces(Digit digit)
+{
+    return 0;
+}
+
+TEST(calc_number, calc_non_spaces)
+{
+    EXPECT_EQ(2, calc_non_spaces(s_digit1));
+}
