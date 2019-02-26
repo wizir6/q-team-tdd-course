@@ -280,7 +280,15 @@ short get_digit_from_struct(Digit digit)
 
 Digit get_digit_from_display(Display display, int num)
 {
-    return s_digit1;
+    Digit result;
+    auto i = 0;
+    for (auto line : display.lines)
+    {
+        result.lines[i] = line.substr(num * 3, 3);
+        i++;
+    }
+
+    return result;
 }
 
 TEST(test_get_digit_from_display, first_digit)
