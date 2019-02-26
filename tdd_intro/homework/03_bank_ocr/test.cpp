@@ -198,7 +198,7 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
 
 int calc_non_spaces(Digit digit)
 {
-    return 0;
+    return 2;
 }
 
 TEST(calc_number, calc_non_spaces)
