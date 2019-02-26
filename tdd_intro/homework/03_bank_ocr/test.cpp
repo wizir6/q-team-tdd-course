@@ -205,3 +205,8 @@ TEST(test_calc_specific_symbol, two_non_spaces)
 {
     EXPECT_EQ(2, calc_specific_symbol(" _ ", ' '));
 }
+
+TEST(test_calc_specific_symbol, one_underline)
+{
+    EXPECT_EQ(1, calc_specific_symbol(" _ ", '_'));
+}
