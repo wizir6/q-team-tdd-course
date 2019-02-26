@@ -225,3 +225,8 @@ TEST(test_calc_specific_symbol, three_spaces)
 {
     EXPECT_EQ(3, calc_specific_symbol("   ", ' '));
 }
+
+TEST(test_calc_specific_symbol, none_search_symbols)
+{
+    EXPECT_EQ(0, calc_specific_symbol("   ", '|'));
+}
