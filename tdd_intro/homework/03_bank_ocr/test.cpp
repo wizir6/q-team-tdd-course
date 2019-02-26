@@ -264,6 +264,10 @@ short get_digit_from_struct(Digit digit)
             {
                 result = 2;
             }
+            else
+            {
+                result = 3;
+            }
             break;
     }
 
