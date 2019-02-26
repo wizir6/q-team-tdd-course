@@ -220,3 +220,8 @@ TEST(test_calc_specific_symbol, one_underline)
 {
     EXPECT_EQ(1, calc_specific_symbol(" _ ", '_'));
 }
+
+TEST(test_calc_specific_symbol, three_spaces)
+{
+    EXPECT_EQ(3, calc_specific_symbol("   ", ' '));
+}
