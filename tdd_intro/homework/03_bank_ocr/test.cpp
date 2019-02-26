@@ -103,43 +103,43 @@ struct Display
 const Digit s_digit0 = { " _ ",
                          "| |",
                          "|_|"
-                       };//6
+                       };//4 4 2
 const Digit s_digit1 = { "   ",
                          "  |",
                          "  |"
-                       };//2
+                       };//7
 const Digit s_digit2 = { " _ ",
                          " _|",
                          "|_ "
-                       };//5
+                       };//4 2 3
 const Digit s_digit3 = { " _ ",
                          " _|",
                          " _|"
-                       };//5
+                       };//4 2 3
 const Digit s_digit4 = { "   ",
                          "|_|",
                          "  |"
-                       };//4
+                       };//5
 const Digit s_digit5 = { " _ ",
                          "|_ ",
                          " _|"
-                       };//5
+                       };//4 2 3
 const Digit s_digit6 = { " _ ",
                          "|_ ",
                          "|_|"
-                       };//6
+                       };//3 3 3
 const Digit s_digit7 = { " _ ",
                          "  |",
                          "  |"
-                       };//3
+                       };//6
 const Digit s_digit8 = { " _ ",
                          "|_|",
                          "|_|"
-                       };//7
+                       };//2
 const Digit s_digit9 = { " _ ",
                          "|_|",
                          " _|"
-                       };//6
+                       };//3 3 3
 
 const Display s_displayAll0 = { " _  _  _  _  _  _  _  _  _ ",
                                 "| || || || || || || || || |",
@@ -220,13 +220,15 @@ short get_digit_from_struct(Digit digit)
     }
 
     short result = 0;
-    if(7 == spaces)
+    switch(spaces)
     {
-        result = 1;
-    }
-    if(6 == spaces)
-    {
-        result = 7;
+        case 7:
+            result = 1;
+            break;
+
+        case 6:
+            result = 7;
+            break;
     }
 
     return result;
