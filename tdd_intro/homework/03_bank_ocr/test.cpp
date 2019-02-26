@@ -221,7 +221,7 @@ short get_digit_from_struct(Digit digit)
         pipes += calc_specific_symbol(line, '|');
     }
 
-    short result = 10;
+    short result = 10; // some incorrect number to detect failure
     switch(spaces)
     {
         case 7:
