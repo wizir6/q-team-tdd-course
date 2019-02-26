@@ -260,6 +260,10 @@ short get_digit_from_struct(Digit digit)
             {
                 result = 5;
             }
+            else if(digit.lines[2].at(0) == '|')
+            {
+                result = 2;
+            }
             break;
     }
 
