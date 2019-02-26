@@ -205,3 +205,8 @@ TEST(calc_non_spaces, two_non_spaces)
 {
     EXPECT_EQ(2, calc_non_spaces(s_digit1));
 }
+
+TEST(calc_non_spaces, six_non_spaces)
+{
+    EXPECT_EQ(6, calc_non_spaces(s_digit0));
+}
