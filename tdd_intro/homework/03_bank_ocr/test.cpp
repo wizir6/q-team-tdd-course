@@ -201,7 +201,7 @@ int calc_non_spaces(Digit digit)
     return 2;
 }
 
-TEST(calc_number, calc_non_spaces)
+TEST(calc_non_spaces, two_non_spaces)
 {
     EXPECT_EQ(2, calc_non_spaces(s_digit1));
 }
