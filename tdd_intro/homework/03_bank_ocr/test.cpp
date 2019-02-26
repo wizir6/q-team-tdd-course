@@ -213,8 +213,19 @@ short calc_specific_symbol(const std::string& line, char symbol)
 
 short get_digit_from_struct(Digit digit)
 {
+    short spaces = 0;
+    for(auto &line : digit.lines)
+    {
+        spaces += calc_specific_symbol(line, ' ');
+    }
 
-    return 1;
+    short result = 0;
+    if(7 == spaces)
+    {
+        result = 1;
+    }
+
+    return result;
 }
 
 
