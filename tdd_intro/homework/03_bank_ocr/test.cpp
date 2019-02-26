@@ -288,6 +288,11 @@ TEST(test_get_digit_from_display, first_digit)
     EXPECT_EQ(get_digit_from_display(s_displayAll1, 0), s_digit1);
 }
 
+TEST(test_get_digit_from_display, fifth_digit)
+{
+    EXPECT_EQ(get_digit_from_display(s_displayAll8, 5), s_digit8);
+}
+
 TEST(test_calc_specific_symbol, two_non_spaces)
 {
     EXPECT_EQ(2, calc_specific_symbol(" _ ", ' '));
