@@ -229,6 +229,10 @@ short get_digit_from_struct(Digit digit)
         case 6:
             result = 7;
             break;
+
+        case 5:
+            result = 4;
+            break;
     }
 
     return result;
