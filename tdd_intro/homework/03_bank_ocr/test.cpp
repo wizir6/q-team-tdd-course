@@ -278,14 +278,14 @@ short get_digit_from_struct(Digit digit)
     return result;
 }
 
-Digit get_digit_from_display(Display display)
+Digit get_digit_from_display(Display display, int num)
 {
     return s_digit1;
 }
 
 TEST(test_get_digit_from_display, first_digit)
 {
-    EXPECT_EQ(get_digit_from_display(s_displayAll1), s_digit1);
+    EXPECT_EQ(get_digit_from_display(s_displayAll1, 0), s_digit1);
 }
 
 TEST(test_calc_specific_symbol, two_non_spaces)
