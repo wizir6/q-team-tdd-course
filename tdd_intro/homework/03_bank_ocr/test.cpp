@@ -198,14 +198,14 @@ const Display s_display123456789 = { "    _  _     _  _  _  _  _ ",
 
 short calc_specific_symbol(const std::string& line, char symbol)
 {
-    short iSpaces = 0;
+    short number_of_symbols = 0;
 
-    for (int i = 0; i < line.size(); ++i)
+    for (size_t i = 0; i < line.size(); ++i)
     {
-        if (line[i] == symbol) ++iSpaces;
+        if (line[i] == symbol) ++number_of_symbols;
     }
 
-    return iSpaces;
+    return number_of_symbols;
 }
 
 TEST(test_calc_specific_symbol, two_non_spaces)
