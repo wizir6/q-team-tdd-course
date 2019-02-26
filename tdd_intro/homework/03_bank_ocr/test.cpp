@@ -211,6 +211,12 @@ short calc_specific_symbol(const std::string& line, char symbol)
     return number_of_symbols;
 }
 
+short get_digit_from_struct(Digit digit)
+{
+    return 0;
+}
+
+
 TEST(test_calc_specific_symbol, two_non_spaces)
 {
     EXPECT_EQ(2, calc_specific_symbol(" _ ", ' '));
@@ -229,4 +235,9 @@ TEST(test_calc_specific_symbol, three_spaces)
 TEST(test_calc_specific_symbol, none_search_symbols)
 {
     EXPECT_EQ(0, calc_specific_symbol("   ", '|'));
+}
+
+TEST(test_get_digit_from_struct, digit_one)
+{
+    EXPECT_EQ(1, get_digit_from_struct(s_digit1));
 }
