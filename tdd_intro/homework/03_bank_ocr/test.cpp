@@ -254,6 +254,13 @@ short get_digit_from_struct(Digit digit)
                 result = 6;
             }
             break;
+
+        case 4:
+            if(digit.lines[1].at(0) == '|')
+            {
+                result = 5;
+            }
+            break;
     }
 
     return result;
@@ -313,11 +320,6 @@ TEST(test_get_digit_from_struct, digit_nine)
 TEST(test_get_digit_from_struct, digit_six)
 {
     EXPECT_EQ(6, get_digit_from_struct(s_digit6));
-}
-
-TEST(test_get_digit_from_struct, digit_two)
-{
-    EXPECT_EQ(2, get_digit_from_struct(s_digit2));
 }
 
 TEST(test_get_digit_from_struct, digit_five)
