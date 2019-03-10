@@ -111,30 +111,31 @@ class ConcreteWeatherClient : public IWeatherClient
 public:
     double GetAverageTemperature(IWeatherServer& server, const std::string& date)
     {
-        double sumTemperature = SplitToValues(server.GetWeather(date + ";03:00"), ";").temperature;
-        sumTemperature += SplitToValues(server.GetWeather(date + ";09:00"), ";").temperature;
-        sumTemperature += SplitToValues(server.GetWeather(date + ";15:00"), ";").temperature;
-        sumTemperature += SplitToValues(server.GetWeather(date + ";21:00"), ";").temperature;
+        double sumTemperature = 0;
+        for (std::string time : times_of_date)
+        {
+            sumTemperature += SplitToValues(server.GetWeather(date + ";" + time), ";").temperature;
+        }
 
         return sumTemperature / 4;
     }
     double GetMinimumTemperature(IWeatherServer& server, const std::string& date)
     {
         std::vector<double> temperatures;
-        temperatures.push_back(SplitToValues(server.GetWeather(date + ";03:00"), ";").temperature);
-        temperatures.push_back(SplitToValues(server.GetWeather(date + ";09:00"), ";").temperature);
-        temperatures.push_back(SplitToValues(server.GetWeather(date + ";15:00"), ";").temperature);
-        temperatures.push_back(SplitToValues(server.GetWeather(date + ";21:00"), ";").temperature);
+        for (std::string time : times_of_date)
+        {
+            temperatures.push_back(SplitToValues(server.GetWeather(date + ";" + time), ";").temperature);
+        }
 
         return *(std::min_element(temperatures.begin(), temperatures.end()));
     }
     double GetMaximumTemperature(IWeatherServer& server, const std::string& date)
     {
         std::vector<double> temperatures;
-        temperatures.push_back(SplitToValues(server.GetWeather(date + ";03:00"), ";").temperature);
-        temperatures.push_back(SplitToValues(server.GetWeather(date + ";09:00"), ";").temperature);
-        temperatures.push_back(SplitToValues(server.GetWeather(date + ";15:00"), ";").temperature);
-        temperatures.push_back(SplitToValues(server.GetWeather(date + ";21:00"), ";").temperature);
+        for (std::string time : times_of_date)
+        {
+            temperatures.push_back(SplitToValues(server.GetWeather(date + ";" + time), ";").temperature);
+        }
 
         return *(std::max_element(temperatures.begin(), temperatures.end()));
     }
@@ -153,6 +154,7 @@ private:
         int wind_direction;
         double wind_speed;
     };
+    const std::vector<std::string> times_of_date = {"03:00", "09:00", "15:00", "21:00"};
 
     Values SplitToValues(const std::string& input, const std::string& regex) {
         if (input.empty())
