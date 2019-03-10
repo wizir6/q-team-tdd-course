@@ -66,3 +66,19 @@ public:
     virtual double GetAverageWindDirection(IWeatherServer& server, const std::string& date) = 0;
     virtual double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date) = 0;
 };
+
+class ConcreteServer : public IWeatherServer
+{
+public:
+    std::string GetWeather(const std::string& request)
+    {
+        return "20;181;5.1";
+    }
+};
+
+
+TEST(WeatherServer, get_weather_at_3_00)
+{
+    ConcreteServer server;
+    EXPECT_EQ(server.GetWeather("31.08.2018;03:00"), "20;181;5.1");
+}
