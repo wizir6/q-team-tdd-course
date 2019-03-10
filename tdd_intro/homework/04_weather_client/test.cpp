@@ -47,6 +47,10 @@ IMPORTANT:
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include <algorithm>
+#include <iterator>
+#include <regex>
+
 class IWeatherServer
 {
 public:
@@ -107,8 +111,12 @@ class ConcreteWeatherClient : public IWeatherClient
 public:
     double GetAverageTemperature(IWeatherServer& server, const std::string& date)
     {
+        double sumTemperature = SplitToValues(server.GetWeather(date + ";03:00"), ";").temperature;
+        sumTemperature += SplitToValues(server.GetWeather(date + ";09:00"), ";").temperature;
+        sumTemperature += SplitToValues(server.GetWeather(date + ";15:00"), ";").temperature;
+        sumTemperature += SplitToValues(server.GetWeather(date + ";21:00"), ";").temperature;
 
-        return 25.5;
+        return sumTemperature / 4;
     }
     double GetMinimumTemperature(IWeatherServer& server, const std::string& date)
     {
@@ -126,6 +134,29 @@ public:
     {
         return 0.0;
     }
+
+private:
+    struct Values{
+        int temperature;
+        int wind_direction;
+        double wind_speed;
+    };
+
+    Values SplitToValues(const std::string& input, const std::string& regex) {
+        // passing -1 as the submatch index parameter performs splitting
+        std::regex re(regex);
+        std::vector<std::string> splittedStrings(3);
+        std::copy(std::sregex_token_iterator(input.begin(), input.end(), re, -1),
+                 std::sregex_token_iterator(),
+                 splittedStrings.data());
+        Values result;
+        result.temperature = std::atoi(splittedStrings[0].c_str());
+        result.wind_direction = std::atoi(splittedStrings[1].c_str());
+        result.wind_speed = std::stod(splittedStrings[2].c_str());
+
+        return result;
+    }
+
 };
 
 TEST(WeatherClient, get_proper_average_temperature_in_01_09_2018)
