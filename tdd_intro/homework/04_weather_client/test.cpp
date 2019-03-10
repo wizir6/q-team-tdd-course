@@ -14,7 +14,7 @@ The real server (i.e. "weather.com") gets the requests in this format:
 The server answers on requests with string like this:
 "20;181;5.1"
 This string contains the weather for the requested time and means next:
-"<air_temperature_in_celsius>;<wind_direction_in_degrees>:<wind_speed>".
+"<air_temperature_in_celsius>;<wind_direction_in_degrees>;<wind_speed>".
 Wind direction value may be in range from 0 to 359 inclusively, temperature may be negative.
 
 The task:
@@ -101,6 +101,39 @@ public:
     }
 };
 
+// Implement this interface
+class ConcreteWeatherClient : public IWeatherClient
+{
+public:
+    double GetAverageTemperature(IWeatherServer& server, const std::string& date)
+    {
+        return 0.0;
+    }
+    double GetMinimumTemperature(IWeatherServer& server, const std::string& date)
+    {
+        return 0.0;
+    }
+    double GetMaximumTemperature(IWeatherServer& server, const std::string& date)
+    {
+        return 0.0;
+    }
+    double GetAverageWindDirection(IWeatherServer& server, const std::string& date)
+    {
+        return 0.0;
+    }
+    double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date)
+    {
+        return 0.0;
+    }
+};
+
+TEST(WeatherClient, get_proper_average_temperature_in_correct_day)
+{
+    ServerMock server;
+    ConcreteWeatherClient client;
+
+    EXPECT_EQ(client.GetAverageTemperature(server, "31.08.2018"), 25.5);
+}
 
 TEST(WeatherServer, get_weather_at_3_00)
 {
