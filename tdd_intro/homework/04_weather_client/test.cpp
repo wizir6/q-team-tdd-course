@@ -164,12 +164,20 @@ private:
 
 };
 
+TEST(WeatherClient, get_minimum_temperature_in_02_09_2018)
+{
+    ServerMock server;
+    ConcreteWeatherClient client;
+
+    EXPECT_EQ(client.GetMinimumTemperature(server, "02.09.2018"), 21);
+}
+
 TEST(WeatherClient, get_average_temperature_with_invalid_value)
 {
     ServerMock server;
     ConcreteWeatherClient client;
 
-    EXPECT_THROW(client.GetAverageTemperature(server, "01.09.2017"), std::invalid_argument);
+    EXPECT_THROW(client.GetAverageTemperature(server, "01.09.3087"), std::invalid_argument);
 }
 
 TEST(WeatherClient, get_proper_average_temperature_in_01_09_2018)
