@@ -164,6 +164,14 @@ private:
 
 };
 
+TEST(WeatherClient, get_minimum_temperature_in_01_09_2018)
+{
+    ServerMock server;
+    ConcreteWeatherClient client;
+
+    EXPECT_EQ(client.GetMinimumTemperature(server, "01.09.2018"), 19);
+}
+
 TEST(WeatherClient, get_minimum_temperature_in_02_09_2018)
 {
     ServerMock server;
