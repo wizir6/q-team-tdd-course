@@ -117,7 +117,7 @@ public:
             sumTemperature += SplitToValues(server.GetWeather(date + ";" + time), ";").temperature;
         }
 
-        return sumTemperature / 4;
+        return sumTemperature / times_of_date.size();
     }
     double GetMinimumTemperature(IWeatherServer& server, const std::string& date)
     {
