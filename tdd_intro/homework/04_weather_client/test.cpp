@@ -141,7 +141,13 @@ public:
     }
     double GetAverageWindDirection(IWeatherServer& server, const std::string& date)
     {
-        return 0.0;
+        double sumWindDirection = 0;
+        for (std::string time : times_of_date)
+        {
+            sumWindDirection += SplitToValues(server.GetWeather(date + ";" + time), ";").wind_direction;
+        }
+
+        return sumWindDirection / times_of_date.size();
     }
     double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date)
     {
