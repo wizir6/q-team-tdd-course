@@ -128,6 +128,14 @@ public:
     }
 };
 
+TEST(WeatherClient, get_proper_average_temperature_in_01_09_2018)
+{
+    ServerMock server;
+    ConcreteWeatherClient client;
+
+    EXPECT_EQ(client.GetAverageTemperature(server, "01.09.2018"), 24);
+}
+
 TEST(WeatherClient, get_proper_average_temperature_in_31_08_2018)
 {
     ServerMock server;
