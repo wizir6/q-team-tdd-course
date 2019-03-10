@@ -120,7 +120,13 @@ public:
     }
     double GetMinimumTemperature(IWeatherServer& server, const std::string& date)
     {
-        return 21;
+        std::vector<double> temperatures;
+        temperatures.push_back(SplitToValues(server.GetWeather(date + ";03:00"), ";").temperature);
+        temperatures.push_back(SplitToValues(server.GetWeather(date + ";09:00"), ";").temperature);
+        temperatures.push_back(SplitToValues(server.GetWeather(date + ";15:00"), ";").temperature);
+        temperatures.push_back(SplitToValues(server.GetWeather(date + ";21:00"), ";").temperature);
+
+        return *(std::min_element(temperatures.begin(), temperatures.end()));
     }
     double GetMaximumTemperature(IWeatherServer& server, const std::string& date)
     {
