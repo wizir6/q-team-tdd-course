@@ -184,6 +184,14 @@ private:
 
 };
 
+TEST(WeatherClient, get_proper_maximum_wind_speed_in_31_08_2018)
+{
+    ServerMock server;
+    ConcreteWeatherClient client;
+
+    EXPECT_EQ(client.GetMaximumWindSpeed(server, "31.08.2018"), 5.1);
+}
+
 TEST(WeatherClient, get_proper_average_wind_direction_in_01_09_2018)
 {
     ServerMock server;
