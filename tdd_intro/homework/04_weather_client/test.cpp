@@ -151,7 +151,13 @@ public:
     }
     double GetMaximumWindSpeed(IWeatherServer& server, const std::string& date)
     {
-        return 0.0;
+        std::vector<double> wind_speeds;
+        for (std::string time : times_of_date)
+        {
+            wind_speeds.push_back(SplitToValues(server.GetWeather(date + ";" + time), ";").wind_speed);
+        }
+
+        return *(std::max_element(wind_speeds.begin(), wind_speeds.end()));
     }
 
 private:
