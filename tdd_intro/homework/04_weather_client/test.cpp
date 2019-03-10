@@ -170,6 +170,14 @@ private:
 
 };
 
+TEST(WeatherClient, get_maximum_temperature_in_31_08_2018)
+{
+    ServerMock server;
+    ConcreteWeatherClient client;
+
+    EXPECT_EQ(client.GetMaximumTemperature(server, "31.08.2018"), 33);
+}
+
 TEST(WeatherClient, get_minimum_temperature_in_01_09_2018)
 {
     ServerMock server;
