@@ -178,6 +178,14 @@ private:
 
 };
 
+TEST(WeatherClient, get_proper_average_wind_direction_in_01_09_2018)
+{
+    ServerMock server;
+    ConcreteWeatherClient client;
+
+    EXPECT_EQ(client.GetAverageWindDirection(server, "01.09.2018"), 135.75);
+}
+
 TEST(WeatherClient, get_maximum_temperature_in_02_09_2018)
 {
     ServerMock server;
