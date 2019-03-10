@@ -143,6 +143,11 @@ private:
     };
 
     Values SplitToValues(const std::string& input, const std::string& regex) {
+        if (input.empty())
+        {
+            throw std::invalid_argument("Nothing to split.");
+        }
+
         // passing -1 as the submatch index parameter performs splitting
         std::regex re(regex);
         std::vector<std::string> splittedStrings(3);
