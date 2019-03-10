@@ -128,7 +128,7 @@ public:
     }
 };
 
-TEST(WeatherClient, get_proper_average_temperature_in_correct_day)
+TEST(WeatherClient, get_proper_average_temperature_in_31_08_2018)
 {
     ServerMock server;
     ConcreteWeatherClient client;
