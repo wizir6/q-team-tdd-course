@@ -120,7 +120,7 @@ public:
     }
     double GetMinimumTemperature(IWeatherServer& server, const std::string& date)
     {
-        return 0.0;
+        return 21;
     }
     double GetMaximumTemperature(IWeatherServer& server, const std::string& date)
     {
