@@ -107,7 +107,8 @@ class ConcreteWeatherClient : public IWeatherClient
 public:
     double GetAverageTemperature(IWeatherServer& server, const std::string& date)
     {
-        return 0.0;
+
+        return 25.5;
     }
     double GetMinimumTemperature(IWeatherServer& server, const std::string& date)
     {
