@@ -100,7 +100,7 @@ public:
 class CoffeeMachine
 {
 public:
-    std::unique_ptr<Cofee> createAmericano(std::unique_ptr<ISourceOfIngredients>& source)
+    std::unique_ptr<Cofee> createSmallAmericano(std::unique_ptr<ISourceOfIngredients>& source)
     {
         std::unique_ptr<Cofee> cofee(new Americano);
         cofee->fillIngredients(std::move(source));
@@ -109,14 +109,15 @@ public:
     }
 };
 
-TEST(CofeeMachine, create_americano)
+TEST(CofeeMachine, create_small_americano)
 {
     CoffeeMachine machine;
     MockSourceOfIngredients* source = new MockSourceOfIngredients;
     std::unique_ptr<ISourceOfIngredients> ptr(source);
-    EXPECT_CALL(*source, AddWater(100, 60)).Times(1);
+    EXPECT_CALL(*source, AddWater(70, 60)).Times(1);
+    EXPECT_CALL(*source, AddCoffee(30)).Times(1);
 
-    auto cofee = machine.createAmericano(ptr);
+    auto cofee = machine.createSmallAmericano(ptr);
 
     EXPECT_EQ(cofee->drink(), "Americano");
 }
