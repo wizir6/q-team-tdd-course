@@ -110,13 +110,13 @@ public:
         return std::move(cofee);
     }
 
-    std::unique_ptr<Cofee> createSmallCappuccino(std::unique_ptr<ISourceOfIngredients>& source)
+    std::unique_ptr<Cofee> createCappuccino(std::unique_ptr<ISourceOfIngredients>& source, int cupSize)
     {
         std::unique_ptr<Cofee> cofee(new Cappuccino);
-        source->AddWater(100, 80);
-        source->AddMilk(30);
-        source->AddCoffee(30);
-        source->AddMilkFoam(30);
+        source->AddWater(cupSize, 80);
+        source->AddMilk(cupSize / 3);
+        source->AddCoffee(cupSize / 3);
+        source->AddMilkFoam(cupSize / 3);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
@@ -153,18 +153,6 @@ public:
         source->AddMilk(35);
         source->AddCoffee(70);
         source->AddMilkFoam(35);
-        cofee->fillIngredients(std::move(source));
-
-        return std::move(cofee);
-    }
-
-    std::unique_ptr<Cofee> createXXLCappuccino(std::unique_ptr<ISourceOfIngredients>& source)
-    {
-        std::unique_ptr<Cofee> cofee(new Cappuccino);
-        source->AddWater(140, 80);
-        source->AddMilk(45);
-        source->AddCoffee(45);
-        source->AddMilkFoam(45);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
@@ -254,11 +242,11 @@ TEST(CofeeMachine, create_XXL_cappuccino)
     MockSourceOfIngredients* source = new MockSourceOfIngredients;
     std::unique_ptr<ISourceOfIngredients> ptr(source);
     EXPECT_CALL(*source, AddWater(140, 80)).Times(1);
-    EXPECT_CALL(*source, AddMilk(45)).Times(1);
-    EXPECT_CALL(*source, AddCoffee(45)).Times(1);
-    EXPECT_CALL(*source, AddMilkFoam(45)).Times(1);
+    EXPECT_CALL(*source, AddMilk(46)).Times(1);
+    EXPECT_CALL(*source, AddCoffee(46)).Times(1);
+    EXPECT_CALL(*source, AddMilkFoam(46)).Times(1);
 
-    auto cofee = machine.createXXLCappuccino(ptr);
+    auto cofee = machine.createCappuccino(ptr, 140);
 
     EXPECT_EQ(cofee->drink(), "Cappuccino");
 }
@@ -270,11 +258,11 @@ TEST(CofeeMachine, create_small_cappuccino)
     MockSourceOfIngredients* source = new MockSourceOfIngredients;
     std::unique_ptr<ISourceOfIngredients> ptr(source);
     EXPECT_CALL(*source, AddWater(100, 80)).Times(1);
-    EXPECT_CALL(*source, AddMilk(30)).Times(1);
-    EXPECT_CALL(*source, AddCoffee(30)).Times(1);
-    EXPECT_CALL(*source, AddMilkFoam(30)).Times(1);
+    EXPECT_CALL(*source, AddMilk(33)).Times(1);
+    EXPECT_CALL(*source, AddCoffee(33)).Times(1);
+    EXPECT_CALL(*source, AddMilkFoam(33)).Times(1);
 
-    auto cofee = machine.createSmallCappuccino(ptr);
+    auto cofee = machine.createCappuccino(ptr, 100);
 
     EXPECT_EQ(cofee->drink(), "Cappuccino");
 }
