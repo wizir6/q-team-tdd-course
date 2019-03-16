@@ -137,10 +137,10 @@ public:
     std::unique_ptr<Cofee> createXXLLatte(std::unique_ptr<ISourceOfIngredients>& source)
     {
         std::unique_ptr<Cofee> cofee(new Latte);
-        source->AddWater(100, 90);
-        source->AddMilk(25);
-        source->AddCoffee(50);
-        source->AddMilkFoam(25);
+        source->AddWater(140, 90);
+        source->AddMilk(35);
+        source->AddCoffee(70);
+        source->AddMilkFoam(35);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
