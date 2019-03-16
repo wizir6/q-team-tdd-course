@@ -35,14 +35,14 @@ public:
 
 class MockSourceOfIngredients : public ISourceOfIngredients
 {
-    void SetCupSize(int gram){};
-    void AddWater(int gram, int temperature){};
-    void AddSugar(int gram){};
-    void AddCoffee(int gram){};
-    void AddMilk(int gram){};
-    void AddMilkFoam(int gram){};
-    void AddChocolate(int gram){};
-    void AddCream(int gram){};
+    MOCK_METHOD1(SetCupSize, void(int));
+    MOCK_METHOD2(AddWater, void(int, int));
+    MOCK_METHOD1(AddSugar, void(int));
+    MOCK_METHOD1(AddCoffee, void(int));
+    MOCK_METHOD1(AddMilk, void(int));
+    MOCK_METHOD1(AddMilkFoam, void(int));
+    MOCK_METHOD1(AddChocolate, void(int));
+    MOCK_METHOD1(AddCream, void(int));
 };
 
 class Cofee
@@ -99,7 +99,7 @@ public:
 class CoffeeMachine
 {
 public:
-    std::unique_ptr<Cofee> createAmericano(ISourceOfIngredients* source)
+    std::unique_ptr<Cofee> createAmericano(std::unique_ptr<ISourceOfIngredients> source)
     {
         return std::move(std::unique_ptr<Cofee> (new Americano));
     }
@@ -108,7 +108,8 @@ public:
 TEST(CofeeMachine, create_americano)
 {
     CoffeeMachine machine;
-    auto cofee = machine.createAmericano(new MockSourceOfIngredients);
+    auto cofee = machine.createAmericano(std::unique_ptr<ISourceOfIngredients> (new MockSourceOfIngredients));
+
     EXPECT_EQ(cofee->drink(), "Americano");
 }
 
