@@ -99,7 +99,7 @@ public:
 class CoffeeMachine
 {
 public:
-    std::unique_ptr<Cofee> createAmericano()
+    std::unique_ptr<Cofee> createAmericano(ISourceOfIngredients* source)
     {
         return std::move(std::unique_ptr<Cofee> (new Americano));
     }
@@ -108,7 +108,7 @@ public:
 TEST(CofeeMachine, create_americano)
 {
     CoffeeMachine machine;
-    auto cofee = machine.createAmericano();
+    auto cofee = machine.createAmericano(new MockSourceOfIngredients);
     EXPECT_EQ(cofee->drink(), "Americano");
 }
 
