@@ -134,9 +134,11 @@ public:
 
     std::unique_ptr<Cofee> createXXLCappuccino(std::unique_ptr<ISourceOfIngredients>& source)
     {
-        std::unique_ptr<Cofee> cofee(new Americano);
-        source->AddCoffee(70);
-        source->AddWater(140, 60);
+        std::unique_ptr<Cofee> cofee(new Cappuccino);
+        source->AddWater(140, 80);
+        source->AddMilk(45);
+        source->AddCoffee(45);
+        source->AddMilkFoam(45);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
