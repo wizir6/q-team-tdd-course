@@ -122,13 +122,13 @@ public:
         return std::move(cofee);
     }
 
-    std::unique_ptr<Cofee> createSmallLatte(std::unique_ptr<ISourceOfIngredients>& source)
+    std::unique_ptr<Cofee> createLatte(std::unique_ptr<ISourceOfIngredients>& source, int cupSize)
     {
         std::unique_ptr<Cofee> cofee(new Latte);
-        source->AddWater(100, 90);
-        source->AddMilk(25);
-        source->AddCoffee(50);
-        source->AddMilkFoam(25);
+        source->AddWater(cupSize, 90);
+        source->AddMilk(cupSize / 4);
+        source->AddCoffee(cupSize / 2);
+        source->AddMilkFoam(cupSize / 4);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
@@ -141,18 +141,6 @@ public:
         source->AddChocolate(25);
         source->AddCoffee(25);
         source->AddMilkFoam(25);
-        cofee->fillIngredients(std::move(source));
-
-        return std::move(cofee);
-    }
-
-    std::unique_ptr<Cofee> createXXLLatte(std::unique_ptr<ISourceOfIngredients>& source)
-    {
-        std::unique_ptr<Cofee> cofee(new Latte);
-        source->AddWater(140, 90);
-        source->AddMilk(35);
-        source->AddCoffee(70);
-        source->AddMilkFoam(35);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
@@ -214,7 +202,7 @@ TEST(CofeeMachine, create_XXL_latte)
     EXPECT_CALL(*source, AddCoffee(70)).Times(1);
     EXPECT_CALL(*source, AddMilkFoam(35)).Times(1);
 
-    auto cofee = machine.createXXLLatte(ptr);
+    auto cofee = machine.createLatte(ptr, 140);
 
     EXPECT_EQ(cofee->drink(), "Latte");
 }
@@ -230,7 +218,7 @@ TEST(CofeeMachine, create_small_latte)
     EXPECT_CALL(*source, AddCoffee(50)).Times(1);
     EXPECT_CALL(*source, AddMilkFoam(25)).Times(1);
 
-    auto cofee = machine.createSmallLatte(ptr);
+    auto cofee = machine.createLatte(ptr, 100);
 
     EXPECT_EQ(cofee->drink(), "Latte");
 }
