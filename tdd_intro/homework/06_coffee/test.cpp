@@ -33,14 +33,34 @@ public:
     virtual void AddCream(int gram) = 0;
 };
 
-class ICofee
+class MockSourceOfIngredients : public ISourceOfIngredients
 {
-public:
-    virtual ~ICofee(){}
-    virtual const std::string drink() = 0;
+    void SetCupSize(int gram){};
+    void AddWater(int gram, int temperature){};
+    void AddSugar(int gram){};
+    void AddCoffee(int gram){};
+    void AddMilk(int gram){};
+    void AddMilkFoam(int gram){};
+    void AddChocolate(int gram){};
+    void AddCream(int gram){};
 };
 
-class Americano : public ICofee
+class Cofee
+{
+public:
+    void fillIngredients(ISourceOfIngredients* source)
+    {
+        m_source.reset(source);
+    }
+
+    virtual ~Cofee(){}
+    virtual const std::string drink() = 0;
+
+private:
+    std::unique_ptr<ISourceOfIngredients> m_source;
+};
+
+class Americano : public Cofee
 {
 public:
     const std::string drink()
@@ -49,7 +69,7 @@ public:
     }
 };
 
-class Latte : public ICofee
+class Latte : public Cofee
 {
 public:
     const std::string drink()
@@ -58,7 +78,7 @@ public:
     }
 };
 
-class Cappuccino : public ICofee
+class Cappuccino : public Cofee
 {
 public:
     const std::string drink()
@@ -67,7 +87,7 @@ public:
     }
 };
 
-class Marochino : public ICofee
+class Marochino : public Cofee
 {
 public:
     const std::string drink()
