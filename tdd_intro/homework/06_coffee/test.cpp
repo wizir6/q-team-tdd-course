@@ -35,6 +35,7 @@ public:
 
 class MockSourceOfIngredients : public ISourceOfIngredients
 {
+public:
     MOCK_METHOD1(SetCupSize, void(int));
     MOCK_METHOD2(AddWater, void(int, int));
     MOCK_METHOD1(AddSugar, void(int));
@@ -111,8 +112,11 @@ public:
 TEST(CofeeMachine, create_americano)
 {
     CoffeeMachine machine;
-    std::unique_ptr<ISourceOfIngredients> source (new MockSourceOfIngredients);
-    auto cofee = machine.createAmericano(source);
+    MockSourceOfIngredients* source = new MockSourceOfIngredients;
+    std::unique_ptr<ISourceOfIngredients> ptr(source);
+    EXPECT_CALL(*source, AddWater(100, 60)).Times(1);
+
+    auto cofee = machine.createAmericano(ptr);
 
     EXPECT_EQ(cofee->drink(), "Americano");
 }
