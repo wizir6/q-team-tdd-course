@@ -96,6 +96,22 @@ public:
     }
 };
 
+class CoffeeMachine
+{
+public:
+    std::unique_ptr<Cofee> createAmericano()
+    {
+        return std::move(std::unique_ptr<Cofee> (new Americano));
+    }
+};
+
+TEST(CofeeMachine, create_americano)
+{
+    CoffeeMachine machine;
+    auto cofee = machine.createAmericano();
+    EXPECT_EQ(cofee->drink(), "Americano");
+}
+
 TEST(CofeeTest, check_that_drink_marochino)
 {
     Marochino mar;
