@@ -182,11 +182,11 @@ public:
 
     std::unique_ptr<Cofee> createXXLMarochino(std::unique_ptr<ISourceOfIngredients>& source)
     {
-        std::unique_ptr<Cofee> cofee(new Cappuccino);
-        source->AddWater(140, 80);
-        source->AddMilk(45);
-        source->AddCoffee(45);
-        source->AddMilkFoam(45);
+        std::unique_ptr<Cofee> cofee(new Marochino);
+        source->AddWater(105, 80);
+        source->AddChocolate(35);
+        source->AddCoffee(35);
+        source->AddMilkFoam(35);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
@@ -199,7 +199,7 @@ TEST(CofeeMachine, create_XXL_marochino)
     CoffeeMachine machine;
     MockSourceOfIngredients* source = new MockSourceOfIngredients;
     std::unique_ptr<ISourceOfIngredients> ptr(source);
-    EXPECT_CALL(*source, AddWater(105, 90)).Times(1);
+    EXPECT_CALL(*source, AddWater(105, 80)).Times(1);
     EXPECT_CALL(*source, AddChocolate(35)).Times(1);
     EXPECT_CALL(*source, AddCoffee(35)).Times(1);
     EXPECT_CALL(*source, AddMilkFoam(35)).Times(1);
