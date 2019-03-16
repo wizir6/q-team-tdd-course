@@ -67,6 +67,21 @@ public:
     }
 };
 
+class Marochino : public ICofee
+{
+public:
+    const std::string drink()
+    {
+        return "Cappuccino";
+    }
+};
+
+TEST(CofeeTest, check_that_drink_marochino)
+{
+    Marochino mar;
+    EXPECT_EQ(mar.drink(), "Marochino");
+}
+
 TEST(CofeeTest, check_that_drink_americano)
 {
     Americano amer;
