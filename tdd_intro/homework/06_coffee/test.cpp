@@ -113,7 +113,7 @@ public:
     std::unique_ptr<Cofee> createXXLAmericano(std::unique_ptr<ISourceOfIngredients>& source)
     {
         std::unique_ptr<Cofee> cofee(new Americano);
-        source->AddCoffee(30);
+        source->AddCoffee(70);
         source->AddWater(70, 60);
         cofee->fillIngredients(std::move(source));
 
