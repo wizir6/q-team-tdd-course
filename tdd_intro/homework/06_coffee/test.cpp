@@ -100,11 +100,11 @@ public:
 class CoffeeMachine
 {
 public:
-    std::unique_ptr<Cofee> createSmallAmericano(std::unique_ptr<ISourceOfIngredients>& source)
+    std::unique_ptr<Cofee> createAmericano(std::unique_ptr<ISourceOfIngredients>& source, int cupSize)
     {
         std::unique_ptr<Cofee> cofee(new Americano);
-        source->AddCoffee(30);
-        source->AddWater(100, 60);
+        source->AddCoffee(cupSize / 3);
+        source->AddWater(cupSize, 60);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
@@ -153,16 +153,6 @@ public:
         source->AddMilk(35);
         source->AddCoffee(70);
         source->AddMilkFoam(35);
-        cofee->fillIngredients(std::move(source));
-
-        return std::move(cofee);
-    }
-
-    std::unique_ptr<Cofee> createXXLAmericano(std::unique_ptr<ISourceOfIngredients>& source)
-    {
-        std::unique_ptr<Cofee> cofee(new Americano);
-        source->AddCoffee(70);
-        source->AddWater(140, 60);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
@@ -295,9 +285,9 @@ TEST(CofeeMachine, create_XXL_americano)
     MockSourceOfIngredients* source = new MockSourceOfIngredients;
     std::unique_ptr<ISourceOfIngredients> ptr(source);
     EXPECT_CALL(*source, AddWater(140, 60)).Times(1);
-    EXPECT_CALL(*source, AddCoffee(70)).Times(1);
+    EXPECT_CALL(*source, AddCoffee(46)).Times(1);
 
-    auto cofee = machine.createXXLAmericano(ptr);
+    auto cofee = machine.createAmericano(ptr, 140);
 
     EXPECT_EQ(cofee->drink(), "Americano");
 }
@@ -308,9 +298,9 @@ TEST(CofeeMachine, create_small_americano)
     MockSourceOfIngredients* source = new MockSourceOfIngredients;
     std::unique_ptr<ISourceOfIngredients> ptr(source);
     EXPECT_CALL(*source, AddWater(100, 60)).Times(1);
-    EXPECT_CALL(*source, AddCoffee(30)).Times(1);
+    EXPECT_CALL(*source, AddCoffee(33)).Times(1);
 
-    auto cofee = machine.createSmallAmericano(ptr);
+    auto cofee = machine.createAmericano(ptr, 100);
 
     EXPECT_EQ(cofee->drink(), "Americano");
 }
