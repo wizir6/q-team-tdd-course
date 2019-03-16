@@ -124,11 +124,11 @@ public:
 
     std::unique_ptr<Cofee> createSmallLatte(std::unique_ptr<ISourceOfIngredients>& source)
     {
-        std::unique_ptr<Cofee> cofee(new Cappuccino);
-        source->AddWater(100, 80);
-        source->AddMilk(30);
-        source->AddCoffee(30);
-        source->AddMilkFoam(30);
+        std::unique_ptr<Cofee> cofee(new Latte);
+        source->AddWater(100, 90);
+        source->AddMilk(25);
+        source->AddCoffee(50);
+        source->AddMilkFoam(25);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
