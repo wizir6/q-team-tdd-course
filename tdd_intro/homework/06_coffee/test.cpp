@@ -45,7 +45,7 @@ class Americano : public ICofee
 public:
     const std::string drink()
     {
-        return "";
+        return "Americano";
     }
 };
 
