@@ -136,10 +136,10 @@ public:
 
     std::unique_ptr<Cofee> createSmallMarochino(std::unique_ptr<ISourceOfIngredients>& source)
     {
-        std::unique_ptr<Cofee> cofee(new Latte);
-        source->AddWater(100, 90);
-        source->AddMilk(25);
-        source->AddCoffee(50);
+        std::unique_ptr<Cofee> cofee(new Marochino);
+        source->AddWater(75, 90);
+        source->AddChocolate(25);
+        source->AddCoffee(25);
         source->AddMilkFoam(25);
         cofee->fillIngredients(std::move(source));
 
