@@ -17,6 +17,8 @@ Implement worked coffee machine using ISourceOfIngredients to controll the proce
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+
+
 class ISourceOfIngredients
 {
 public:
@@ -30,3 +32,25 @@ public:
     virtual void AddChocolate(int gram) = 0;
     virtual void AddCream(int gram) = 0;
 };
+
+class ICofee
+{
+public:
+    virtual ~ICofee(){}
+    virtual const std::string drink() = 0;
+};
+
+class Americano : public ICofee
+{
+public:
+    const std::string drink()
+    {
+        return "";
+    }
+};
+
+TEST(CofeeTest, check_that_drink_americano)
+{
+    Americano amer;
+    EXPECT_EQ(amer.drink(), "Americano");
+}
