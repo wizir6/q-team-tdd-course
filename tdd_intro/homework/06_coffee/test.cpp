@@ -72,7 +72,7 @@ class Marochino : public ICofee
 public:
     const std::string drink()
     {
-        return "Cappuccino";
+        return "Marochino";
     }
 };
 
