@@ -48,9 +48,9 @@ class MockSourceOfIngredients : public ISourceOfIngredients
 class Cofee
 {
 public:
-    void fillIngredients(ISourceOfIngredients* source)
+    void fillIngredients(std::unique_ptr<ISourceOfIngredients> source)
     {
-        m_source.reset(source);
+        m_source.swap(source);
     }
 
     virtual ~Cofee(){}
@@ -99,16 +99,20 @@ public:
 class CoffeeMachine
 {
 public:
-    std::unique_ptr<Cofee> createAmericano(std::unique_ptr<ISourceOfIngredients> source)
+    std::unique_ptr<Cofee> createAmericano(std::unique_ptr<ISourceOfIngredients>& source)
     {
-        return std::move(std::unique_ptr<Cofee> (new Americano));
+        std::unique_ptr<Cofee> cofee(new Americano);
+        cofee->fillIngredients(std::move(source));
+
+        return std::move(cofee);
     }
 };
 
 TEST(CofeeMachine, create_americano)
 {
     CoffeeMachine machine;
-    auto cofee = machine.createAmericano(std::unique_ptr<ISourceOfIngredients> (new MockSourceOfIngredients));
+    std::unique_ptr<ISourceOfIngredients> source (new MockSourceOfIngredients);
+    auto cofee = machine.createAmericano(source);
 
     EXPECT_EQ(cofee->drink(), "Americano");
 }
