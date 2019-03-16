@@ -58,6 +58,15 @@ public:
     }
 };
 
+class Cappuccino : public ICofee
+{
+public:
+    const std::string drink()
+    {
+        return "Latte";
+    }
+};
+
 TEST(CofeeTest, check_that_drink_americano)
 {
     Americano amer;
@@ -68,4 +77,10 @@ TEST(CofeeTest, check_that_drink_latte)
 {
     Latte lat;
     EXPECT_EQ(lat.drink(), "Latte");
+}
+
+TEST(CofeeTest, check_that_drink_cappuccino)
+{
+    Cappuccino cap;
+    EXPECT_EQ(cap.drink(), "Cappuccino");
 }
