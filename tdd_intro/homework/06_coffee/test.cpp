@@ -122,6 +122,18 @@ public:
         return std::move(cofee);
     }
 
+    std::unique_ptr<Cofee> createSmallLatte(std::unique_ptr<ISourceOfIngredients>& source)
+    {
+        std::unique_ptr<Cofee> cofee(new Cappuccino);
+        source->AddWater(100, 80);
+        source->AddMilk(30);
+        source->AddCoffee(30);
+        source->AddMilkFoam(30);
+        cofee->fillIngredients(std::move(source));
+
+        return std::move(cofee);
+    }
+
     std::unique_ptr<Cofee> createXXLAmericano(std::unique_ptr<ISourceOfIngredients>& source)
     {
         std::unique_ptr<Cofee> cofee(new Americano);
@@ -144,6 +156,22 @@ public:
         return std::move(cofee);
     }
 };
+
+TEST(CofeeMachine, create_small_latte)
+{
+    // latte - milk & coffee & milk foam 1:4, 1:2, 1:4. Water temp 90C
+    CoffeeMachine machine;
+    MockSourceOfIngredients* source = new MockSourceOfIngredients;
+    std::unique_ptr<ISourceOfIngredients> ptr(source);
+    EXPECT_CALL(*source, AddWater(100, 90)).Times(1);
+    EXPECT_CALL(*source, AddMilk(25)).Times(1);
+    EXPECT_CALL(*source, AddCoffee(50)).Times(1);
+    EXPECT_CALL(*source, AddMilkFoam(25)).Times(1);
+
+    auto cofee = machine.createSmallLatte(ptr);
+
+    EXPECT_EQ(cofee->drink(), "Latte");
+}
 
 TEST(CofeeMachine, create_XXL_cappuccino)
 {
