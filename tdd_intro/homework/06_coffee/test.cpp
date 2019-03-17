@@ -134,25 +134,13 @@ public:
         return std::move(cofee);
     }
 
-    std::unique_ptr<Cofee> createSmallMarochino(std::unique_ptr<ISourceOfIngredients>& source)
+    std::unique_ptr<Cofee> createMarochino(std::unique_ptr<ISourceOfIngredients>& source, int cupSize)
     {
         std::unique_ptr<Cofee> cofee(new Marochino);
-        source->AddWater(75, 90);
-        source->AddChocolate(25);
-        source->AddCoffee(25);
-        source->AddMilkFoam(25);
-        cofee->fillIngredients(std::move(source));
-
-        return std::move(cofee);
-    }
-
-    std::unique_ptr<Cofee> createXXLMarochino(std::unique_ptr<ISourceOfIngredients>& source)
-    {
-        std::unique_ptr<Cofee> cofee(new Marochino);
-        source->AddWater(105, 80);
-        source->AddChocolate(35);
-        source->AddCoffee(35);
-        source->AddMilkFoam(35);
+        source->AddWater(cupSize - (cupSize / 4), 0);
+        source->AddChocolate(cupSize / 4);
+        source->AddCoffee(cupSize / 4);
+        source->AddMilkFoam(cupSize / 4);
         cofee->fillIngredients(std::move(source));
 
         return std::move(cofee);
@@ -165,12 +153,12 @@ TEST(CofeeMachine, create_XXL_marochino)
     CoffeeMachine machine;
     MockSourceOfIngredients* source = new MockSourceOfIngredients;
     std::unique_ptr<ISourceOfIngredients> ptr(source);
-    EXPECT_CALL(*source, AddWater(105, 80)).Times(1);
+    EXPECT_CALL(*source, AddWater(105, 0)).Times(1);
     EXPECT_CALL(*source, AddChocolate(35)).Times(1);
     EXPECT_CALL(*source, AddCoffee(35)).Times(1);
     EXPECT_CALL(*source, AddMilkFoam(35)).Times(1);
 
-    auto cofee = machine.createXXLMarochino(ptr);
+    auto cofee = machine.createMarochino(ptr, 140);
 
     EXPECT_EQ(cofee->drink(), "Marochino");
 }
@@ -181,12 +169,12 @@ TEST(CofeeMachine, create_small_marochino)
     CoffeeMachine machine;
     MockSourceOfIngredients* source = new MockSourceOfIngredients;
     std::unique_ptr<ISourceOfIngredients> ptr(source);
-    EXPECT_CALL(*source, AddWater(75, 90)).Times(1);
+    EXPECT_CALL(*source, AddWater(75, 0)).Times(1);
     EXPECT_CALL(*source, AddChocolate(25)).Times(1);
     EXPECT_CALL(*source, AddCoffee(25)).Times(1);
     EXPECT_CALL(*source, AddMilkFoam(25)).Times(1);
 
-    auto cofee = machine.createSmallMarochino(ptr);
+    auto cofee = machine.createMarochino(ptr, 100);
 
     EXPECT_EQ(cofee->drink(), "Marochino");
 }
