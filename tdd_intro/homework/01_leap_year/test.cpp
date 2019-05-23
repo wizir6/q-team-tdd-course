@@ -14,12 +14,12 @@ If your language provides a method in the standard library that does this look-u
 
 #include <gtest/gtest.h>
 
-bool is_leap_year(int year)
+bool is_leap_year(int /*year*/)
 {
     return true;
 }
 
 TEST(LeapYear, divisible_by_4)
 {
-    EXPECT_EQ(is_leap_year(1996), true);
+    EXPECT_TRUE(is_leap_year(1996));
 }
