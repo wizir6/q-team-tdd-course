@@ -23,3 +23,8 @@ TEST(LeapYear, divisible_by_4)
 {
     EXPECT_TRUE(is_leap_year(1996));
 }
+
+TEST(LeapYear, not_divisible_by_4)
+{
+    EXPECT_FALSE(is_leap_year(1997));
+}
